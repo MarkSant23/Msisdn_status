@@ -22,7 +22,6 @@
                 <legend><?= __('Edit Msisdn') ?></legend>
                 <?php
                     echo $this->Form->control('msisdn');
-                    // echo $this->Form->control('status', array('type'=> 'number','min' =>0, 'max'=>1));
                     
                     $arrStatus=array(0=>"Unblock",1=>"Block");
                     echo $this->Form->control('status', array('options'=>$arrStatus, 'label'=>'Status',

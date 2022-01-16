@@ -31,12 +31,7 @@ use Cake\Validation\Validator;
  */
 class MsisdnTable extends Table
 {
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
+    
     public function initialize(array $config): void
     {
         parent::initialize($config);
@@ -52,12 +47,7 @@ class MsisdnTable extends Table
         ]);
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
+    
     public function validationDefault(Validator $validator): Validator
     {
         $validator
@@ -73,15 +63,6 @@ class MsisdnTable extends Table
                 return (bool) preg_match('/^(((00|\+)?385)|0)?(9[125789][1-9][0-9]{5,6})$/', $value);
             }, 'message'=>'Please enter a valid phone number.']);
             
-            //->add('msisdn', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-            
-            //->add('msisdn', 'custom',['rule' => '(((00|\+)?385)|0)?(9[125789]?[1-9]?[0-9]?{5,6})','provider' => 'custom','message' => 'Please enter a valid phone number.']);
-            //->add('msisdn','unique', ['rule' => '/(0)[0-9]{1,2}\s[0-9]{3,4}\s[0-9]{3,4}/^', 'provider' => 'table']);
-            // '  ^/(0)[0-9]{1,2}\s[0-9]{3,4}\s[0-9]{3,4}/^'
-            //, 'message'=>'Please enter a valid phone number.' validateUnique /^\$?((+385)|0)?9[0-9]{2}?[0-9]{3}?[0-9]{4}?$/^
-            //  ['rule' => array('custom', '^(((00|\+)?385)|0)?(9[125789][1-9][0-9]{5,6}/)^')]
-
-
         $validator
             ->requirePresence('status', 'create')
             ->notEmptyString('status');
@@ -90,13 +71,7 @@ class MsisdnTable extends Table
         return $validator;
     }
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
+    
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->isUnique(['msisdn']), ['errorField' => 'msisdn']);

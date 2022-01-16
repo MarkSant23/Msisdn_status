@@ -5,33 +5,12 @@
  */
 ?>
 
-<!--Modal  -->
-<!-- <a data-target="#ConfirmDelete" role="button" data-toggle="modal" id="trigger"></a>
-<div class="modal" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5>Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure to delete this phone number?</p>
-            </div>
-            <div class="modal-footer">
-                <a role="button" class="btn btn-default btn-flat btn-lg" data-dismiss="modal">Cancel</a>
-                <div id="ajax_button"></div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class="msisdn index content">
     <?= $this->Html->link(__('New Msisdn'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Msisdn') ?></h3>
 
     <?= $this->Form->create(null, ['type' => 'get']) ?>
     <?= $this->Form->control('key', ['label' => 'Filter Msisdn', 'value' => $this->request->getQuery('key'), 'autocomplete' => 'off']) ?>
-    <!-- <?= $this->Form->submit() ?> -->
     <?= $this->Form->end() ?>
 
     <div class="table-responsive">
@@ -43,7 +22,6 @@
                     <th></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
-                    <!-- <th><?= $this->Paginator->sort('deleted') ?></th> -->
                     <!-- <th><?= $this->Paginator->sort('user_id') ?></th> -->
                     <th class="actions" style="text-align:center;"><?= __('Actions') ?></th>
                 </tr>
@@ -74,8 +52,7 @@
                     </td>
 
                     <td><?= h($msisdn->created) ?></td>
-                    <td><?= h($msisdn->modified) ?></td>
-                    <!-- <td><?= h($msisdn->deleted) ?></td> -->        
+                    <td><?= h($msisdn->modified) ?></td>    
                     <!-- <td><?= $this->Number->format($msisdn->user_id) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $msisdn->msisdn_id]) ?>
@@ -100,11 +77,3 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
-
-
-<!-- <script type="text/javascript">
-    $(".delete-btn").click(function(){
-        $("#ajax_button").html("<a href='/msisdn/delete/"+ $(this).attr("data-id")+"' class='btn btn-danger btn-flat btn-lg'>Confirm</a>");
-        $("#trigger").click();
-    });
-</script> -->

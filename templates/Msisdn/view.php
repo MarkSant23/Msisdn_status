@@ -11,7 +11,6 @@
             <nav class="nav">
                 <a class="nav-link"><?= $this->Html->link(__('Edit'), ['action' => 'edit', $msisdn->msisdn_id], ['class' => 'side-nav-item']) ?></a>
                 <a class="nav-link" ><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $msisdn->msisdn_id], ['confirm' => __('Are you sure you want to delete {0}?', $msisdn->msisdn), 'class' => 'side-nav-item']) ?></a>
-                <!-- <a class="nav-link" ><?= $this->Form->postLink("Delete", array("action" => "delete",$msisdn->msisdn_id, "data-id"=>$msisdn->msisdn_id));?></a> -->
                 <a class="nav-link"><?= $this->Html->link(__('List of Msisdns'), ['action' => 'index'], ['class' => 'side-nav-item']) ?></a>
                 <a class="nav-link" ><?= $this->Html->link(__('New Msisdn'), ['action' => 'add'], ['class' => 'side-nav-item']) ?> </a>
             </nav>

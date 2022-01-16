@@ -16,7 +16,6 @@
         <div class="msisdn form content">
             <?= $this->Form->create($msisdn) ?>
             <fieldset>
-                <!-- <legend><?= __('Add Msisdn') ?></legend> -->
                 <?php
                     echo $this->Form->controls  (['msisdn' => ['placeholder' => 'Enter a phone number', 'required' => true]]);
                     // echo $this->Form->control('status', array('type'=> 'number', 'min'=>0 , 'max'=>1);
@@ -25,7 +24,6 @@
                     echo $this->Form->control('status', array('options'=>$arrStatus, 'label'=>'Status',
                                   'empty'=>'','required'=>'required', 'selected'=>'Your selection'));
 
-                    //echo $this->Form->input('modified', array('empty' => true));
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
