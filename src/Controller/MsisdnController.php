@@ -80,7 +80,7 @@ class MsisdnController extends AppController
             if ($this->request->is('post')) {
                 $msisdn = $this->Msisdn->patchEntity($msisdn, $this->request->getData());
                 $msisdn['modified'] = NULL;
-                print_r($msisdn);
+                //print_r($msisdn);
                 if ($this->Msisdn->save($msisdn)) {
                     $msisdn['created'] = Time::now();
                     $this->Flash->success(__('The msisdn has been saved.'));
@@ -105,7 +105,7 @@ class MsisdnController extends AppController
             $msisdn = $this->Msisdn->get($id, []);
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $msisdn = $this->Msisdn->patchEntity($msisdn, $this->request->getData());
-                print_r($msisdn);
+                //print_r($msisdn);
                 if ($this->Msisdn->save($msisdn)) {
                     $msisdn['modified'] = Time::now();
                     $this->Flash->success(__('The msisdn has been saved.'));
@@ -144,6 +144,29 @@ class MsisdnController extends AppController
             echo 'Error:'.$ex->getMessage();
             return;
         }
+    }
+
+
+    public function multipledelete()
+    {
+        try
+        {
+            $this->request->allowMethod(['post', 'delete']);
+            $ids = $this->request->getData('ids');
+
+            if($this->Msisdn->deleteAll(['Msisdn.msisdn_id IN'=>$ids])){
+                $this->Flash->success(__('The msisdns has been deleted.'));
+            }else{
+            $this->Flash->error(__('The msisdn could not be deleted. Please, try again.'));
+            }
+            return $this->redirect(['action' => 'index']);
+        }
+        catch(\Exception $ex)
+        {
+            echo 'Error:'.$ex->getMessage();
+            return;
+        }
+        
     }
 
 

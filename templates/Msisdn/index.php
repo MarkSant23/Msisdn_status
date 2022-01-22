@@ -14,9 +14,12 @@
     <?= $this->Form->end() ?>
 
     <div class="table-responsive">
+        <?= $this->Form->create(null, ['url' => ['action' => 'multipledelete']]) ?>
+        <button name="idd">Delete All</button>
         <table>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th><?= $this->Paginator->sort('msisdn') ?></th>
                     <th style="text-align:center;"><?= $this->Paginator->sort('Change status') ?></th>
                     <th></th>
@@ -29,6 +32,7 @@
             <tbody>
                 <?php foreach ($msisdn as $msisdn): ?>
                 <tr>
+                    <td><?= $this->Form->checkbox('ids[]', array(['value' => $msisdn->msisdn_id], 'id'=>"check1")) ?></td>
                     <td><b><?= h($msisdn->msisdn) ?></b></td>
                     
                     <td class="abc">
@@ -77,3 +81,13 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+
+
+<!-- <script type="text/javascript">
+    
+    $('[name=idd]').on('change', function() {
+        console.log(this.checked);
+        $('#check1').prop('disabled', this.checked);
+    });
+
+</script> -->

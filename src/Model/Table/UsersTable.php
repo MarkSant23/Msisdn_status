@@ -9,7 +9,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * User Model
+ * Users Model
  *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
@@ -25,7 +25,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class UserTable extends Table
+class UsersTable extends Table
 {
     /**
      * Initialize method
@@ -37,7 +37,7 @@ class UserTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('user');
+        $this->setTable('users');
         $this->setDisplayField('user_id');
         $this->setPrimaryKey('user_id');
     }
@@ -59,6 +59,19 @@ class UserTable extends Table
             ->maxLength('user_name', 30)
             ->requirePresence('user_name', 'create')
             ->notEmptyString('user_name');
+
+        $validator
+            ->scalar('password')
+            ->maxLength('password', 255)
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password', 'A password is required');
+
+        $validator
+            ->scalar('role')
+            ->maxLength('role', 255)
+            ->requirePresence('role', 'create')
+            ->notEmptyString('role', 'A role is required')
+            ->add('role', 'inList', ['rule'=>['inList', ['admin', 'guest', 'manager']], 'message'=>'Please enter a valid role']);
 
         return $validator;
     }
