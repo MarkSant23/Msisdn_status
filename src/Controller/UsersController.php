@@ -5,20 +5,7 @@ namespace App\Controller;
 
 class UsersController extends AppController
 {
-    // public function login()
-    // {
-    //     $this->request->allowMethod(['get', 'post']);
-    //     $result = $this->Authentication->getResult();
-    //     // regardless of POST or GET, redirect if user is logged in
-    //     if ($result->isValid()) {
-            
-    //         return $this->redirect(['controller'=>'Msisdn','action'=>'index']);
-    //     }
-    //     // display error if user submitted and authentication failed
-    //     if ($this->request->is('post') && !$result->isValid()) {
-    //         $this->Flash->error(__('Invalid username or password'));
-    //     }
-    // }
+
     public function login()
     {
         try
@@ -28,11 +15,11 @@ class UsersController extends AppController
                 if($user){
                     $this->Auth->setUser($user);
                     
-                    // if($user['status'] == 0)
-                    // {
-                    //     $this->Flash->error("You have not access permission!");
-                    //     return $this->redirect(['controller' => 'Users', 'action' => 'logout']);
-                    // }
+                    if($user['status'] == 0)
+                    {
+                        $this->Flash->error("You have not access permission!");
+                        return $this->redirect(['controller' => 'Users', 'action' => 'logout']);
+                    }
     
                     return $this->redirect(['controller'=>'Msisdn','action'=>'index']);
                 }else {
